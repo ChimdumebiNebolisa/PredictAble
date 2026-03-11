@@ -173,14 +173,14 @@ function FeaturesSection() {
           <div className="flex flex-col items-center gap-3">
             <SectionAccentBar />
             <SectionHeading>
-              <span className="block text-center">Features</span>
+              <span className="block text-center text-gray-900">Features</span>
             </SectionHeading>
           </div>
         </ScrollReveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
           {features.map((feature, index) => (
             <ScrollReveal key={feature.title} delay={index * 100}>
-              <div className="rounded-token border border-line border-l-accent-yellow bg-white/60 p-6 shadow-card backdrop-blur-sm" style={{ borderLeftWidth: "3px" }}>
+              <div className="rounded-token border border-line border-l-accent-yellow bg-white/60 p-6 text-center shadow-card backdrop-blur-sm" style={{ borderLeftWidth: "3px" }}>
                 <h3 className="mt-3 text-lg font-semibold text-dark-text">
                   {feature.title}
                 </h3>
