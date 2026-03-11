@@ -1,4 +1,4 @@
-const IMG = (name: string) => `/images/${encodeURIComponent(name)}`;
+export const IMG = (name: string) => `/images/${encodeURIComponent(name)}`;
 
 export const HERO_ASSETS = {
   // Yellow, warm icons for the hero cluster
@@ -27,8 +27,8 @@ export const FEATURE_CARD_ASSETS = [
 
 export const FLOATING_SECTION_ASSETS = {
   // Base yellow decorative assets per section (additional ones are defined in SECTION_ASSETS)
-  problem: IMG("Action+thumbs_up_down_R Shadowless.png"),
-  solution: IMG("Action+translate_R Shadowless.png"),
+  problem: IMG("Action+view_agenda_R Shadowless.png"),
+  solution: IMG("Action+update_R Shadowless.png"),
   "how-it-works": IMG("Action+view_agenda_R Shadowless.png"),
   features: IMG("Action+trending_up_R Shadowless.png"),
   cta: IMG("Action+today_R Shadowless.png"),

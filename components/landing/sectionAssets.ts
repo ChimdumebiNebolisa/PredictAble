@@ -1,7 +1,7 @@
 /**
  * Floating asset config using scattered coordinates.
  */
-import { FLOATING_SECTION_ASSETS } from "./landingImageMap";
+import { FLOATING_SECTION_ASSETS, IMG } from "./landingImageMap";
 
 export type SectionId =
   | "problem"
@@ -30,7 +30,7 @@ export const SECTION_ASSETS: Record<SectionId, FloatingAssetConfig[]> = {
       size: 110,
     },
     {
-      src: "/images/Action+thumb_down_R Shadowless.png",
+      src: IMG("Action+track_changes_R Shadowless.png"),
       x: 8,
       y: 72,
       zIndex: -1,
@@ -38,7 +38,7 @@ export const SECTION_ASSETS: Record<SectionId, FloatingAssetConfig[]> = {
       size: 88,
     },
     {
-      src: "/images/Action+toc_R Shadowless.png",
+      src: IMG("Action+timeline_R Shadowless.png"),
       x: 86,
       y: 18,
       zIndex: -1,
@@ -56,7 +56,7 @@ export const SECTION_ASSETS: Record<SectionId, FloatingAssetConfig[]> = {
       size: 110,
     },
     {
-      src: "/images/Action+verified_user_R Shadowless.png",
+      src: IMG("Action+view_agenda_L Shadowless.png"),
       x: 14,
       y: 30,
       zIndex: -1,
@@ -64,7 +64,7 @@ export const SECTION_ASSETS: Record<SectionId, FloatingAssetConfig[]> = {
       size: 86,
     },
     {
-      src: "/images/Action+touch_app_R Shadowless.png",
+      src: IMG("Action+track_changes_R Shadowless.png"),
       x: 88,
       y: 78,
       zIndex: -1,
@@ -82,7 +82,7 @@ export const SECTION_ASSETS: Record<SectionId, FloatingAssetConfig[]> = {
       size: 104,
     },
     {
-      src: "/images/Action+view_agenda_L Shadowless.png",
+      src: IMG("Action+view_agenda_L Shadowless.png"),
       x: 32,
       y: 22,
       zIndex: -1,
@@ -90,7 +90,7 @@ export const SECTION_ASSETS: Record<SectionId, FloatingAssetConfig[]> = {
       size: 84,
     },
     {
-      src: "/images/Action+track_changes_R Shadowless.png",
+      src: IMG("Action+track_changes_R Shadowless.png"),
       x: 74,
       y: 18,
       zIndex: -1,
@@ -108,7 +108,7 @@ export const SECTION_ASSETS: Record<SectionId, FloatingAssetConfig[]> = {
       size: 108,
     },
     {
-      src: "/images/Action+trending_flat_R Shadowless.png",
+      src: IMG("Action+today_R Shadowless.png"),
       x: 18,
       y: 26,
       zIndex: -1,
@@ -116,7 +116,7 @@ export const SECTION_ASSETS: Record<SectionId, FloatingAssetConfig[]> = {
       size: 90,
     },
     {
-      src: "/images/Action+trending_down_R Shadowless.png",
+      src: IMG("Action+track_changes_R Shadowless.png"),
       x: 12,
       y: 82,
       zIndex: -1,
@@ -134,7 +134,7 @@ export const SECTION_ASSETS: Record<SectionId, FloatingAssetConfig[]> = {
       size: 112,
     },
     {
-      src: "/images/Action+turned_in_R Shadowless.png",
+      src: IMG("Action+view_agenda_R Shadowless.png"),
       x: 24,
       y: 64,
       zIndex: -1,
@@ -142,7 +142,7 @@ export const SECTION_ASSETS: Record<SectionId, FloatingAssetConfig[]> = {
       size: 92,
     },
     {
-      src: "/images/Action+update_R Shadowless.png",
+      src: IMG("Action+update_R Shadowless.png"),
       x: 80,
       y: 60,
       zIndex: -1,
