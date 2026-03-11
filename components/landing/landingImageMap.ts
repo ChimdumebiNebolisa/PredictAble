@@ -1,9 +1,10 @@
 const IMG = (name: string) => `/images/${encodeURIComponent(name)}`;
 
 export const HERO_ASSETS = {
-  main: IMG("Torus_Standing_1_0002.png"),
-  left: IMG("Spring_Fat_Tall0001.png"),
-  right: IMG("Torus_Half_Laying_2_0000.png"),
+  // Yellow, warm icons for the hero cluster
+  main: IMG("Action+view_agenda_R Shadowless.png"),
+  left: IMG("Action+today_R Shadowless.png"),
+  right: IMG("Action+timeline_R Shadowless.png"),
 } as const;
 
 export const SECTION_HEADER_ASSETS = {
@@ -25,9 +26,10 @@ export const FEATURE_CARD_ASSETS = [
 ] as const;
 
 export const FLOATING_SECTION_ASSETS = {
-  problem: IMG("1_0000.png"),
-  solution: IMG("2_0000.png"),
-  "how-it-works": IMG("3_0000.png"),
-  features: IMG("Spring_Fat_Tall0000.png"),
-  cta: IMG("Torus_Laying_1_0000.png"),
+  // Base yellow decorative assets per section (additional ones are defined in SECTION_ASSETS)
+  problem: IMG("Action+thumbs_up_down_R Shadowless.png"),
+  solution: IMG("Action+translate_R Shadowless.png"),
+  "how-it-works": IMG("Action+view_agenda_R Shadowless.png"),
+  features: IMG("Action+trending_up_R Shadowless.png"),
+  cta: IMG("Action+today_R Shadowless.png"),
 } as const;
