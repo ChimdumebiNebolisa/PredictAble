@@ -28,6 +28,15 @@ const config: Config = {
       minHeight: {
         touch: "var(--touch-min, 44px)",
       },
+      animation: {
+        "gradient-pulse": "gradient-pulse 10s ease-in-out infinite",
+        "gradient-drift": "gradient-drift 15s ease-in-out infinite",
+        "orb-float-1": "orb-float-1 12s ease-in-out infinite",
+        "orb-float-2": "orb-float-2 14s ease-in-out infinite",
+        "orb-float-3": "orb-float-3 10s ease-in-out infinite",
+        "fade-in-up": "fade-in-up 0.8s ease-out forwards",
+        "stagger-fade-in": "stagger-fade-in 1s ease-out forwards",
+      },
     },
   },
   plugins: [],

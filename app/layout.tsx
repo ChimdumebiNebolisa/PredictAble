@@ -3,7 +3,7 @@ import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   title: "PredictAble",
-  description: "Daily planning assistant for mobility-aware planning",
+  description: "Plan your day around how you move.",
 };
 
 export default function RootLayout({

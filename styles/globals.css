@@ -37,3 +37,85 @@
 body {
   background-color: var(--color-center);
 }
+
+/* Landing page animations */
+@keyframes gradient-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes gradient-drift {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(2%, 1%);
+  }
+  50% {
+    transform: translate(-1%, 2%);
+  }
+  75% {
+    transform: translate(-2%, -1%);
+  }
+}
+
+@keyframes orb-float-1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(8px, -12px) scale(1.05);
+  }
+  66% {
+    transform: translate(-6px, 8px) scale(0.95);
+  }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-10px, 6px) scale(0.97);
+  }
+  66% {
+    transform: translate(12px, -8px) scale(1.03);
+  }
+}
+
+@keyframes orb-float-3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(6px, 10px) scale(1.04);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stagger-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
