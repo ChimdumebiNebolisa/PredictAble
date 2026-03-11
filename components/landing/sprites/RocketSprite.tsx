@@ -18,40 +18,30 @@ export function RocketSprite({
       aria-hidden
     >
       <defs>
-        <linearGradient id="rocket-body" x1="50%" y1="100%" x2="50%" y2="0%">
-          <stop offset="0%" stopColor="#EA580C" />
-          <stop offset="100%" stopColor="#F97316" />
+        <linearGradient id="rocket-body" x1="0%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%" stopColor="#F97316" />
+          <stop offset="100%" stopColor="#FFF4BF" />
         </linearGradient>
         <linearGradient id="rocket-flame" x1="50%" y1="100%" x2="50%" y2="0%">
-          <stop offset="0%" stopColor="#FACC15" />
-          <stop offset="100%" stopColor="#F97316" stopOpacity={0.6} />
+          <stop offset="0%" stopColor="#EA580C" />
+          <stop offset="100%" stopColor="#FACC15" stopOpacity="0.8" />
         </linearGradient>
       </defs>
-      {/* Flame */}
+      <path
+        d="M28 8 L32 24 L28 44 L24 24 Z"
+        fill="url(#rocket-body)"
+        stroke="#F97316"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <circle cx="28" cy="18" r="4" fill="#FFF4BF" stroke="#F97316" strokeWidth="1" />
       <path
         d="M 28 48 L 22 32 L 28 28 L 34 32 Z"
         fill="url(#rocket-flame)"
-      />
-      <path
-        d="M 28 44 L 24 34 L 28 32 L 32 34 Z"
-        fill="#FFF4BF"
-        opacity={0.8}
-      />
-      {/* Body */}
-      <path
-        d="M 28 8 L 36 28 L 28 28 L 20 28 Z"
-        fill="url(#rocket-body)"
         stroke="#EA580C"
-        strokeWidth="1.5"
+        strokeWidth="1"
         strokeLinejoin="round"
       />
-      {/* Nose */}
-      <circle cx="28" cy="12" r="4" fill="#FFFDF7" stroke="#F97316" strokeWidth="1" />
-      {/* Window */}
-      <circle cx="28" cy="22" r="3" fill="#FFFDF7" stroke="#FACC15" strokeWidth="1" />
-      {/* Fins */}
-      <path d="M 20 28 L 14 40 L 20 36 Z" fill="#F97316" stroke="#EA580C" strokeWidth="1" />
-      <path d="M 36 28 L 42 40 L 36 36 Z" fill="#F97316" stroke="#EA580C" strokeWidth="1" />
     </svg>
   );
 }

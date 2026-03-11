@@ -1,11 +1,13 @@
 type BodyCheckInSpriteProps = {
   className?: string;
   size?: number;
+  style?: React.CSSProperties;
 };
 
 export function BodyCheckInSprite({
   className = "",
   size = 48,
+  style,
 }: BodyCheckInSpriteProps) {
   return (
     <svg
@@ -15,6 +17,7 @@ export function BodyCheckInSprite({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
       aria-hidden
     >
       <defs>
@@ -23,9 +26,7 @@ export function BodyCheckInSprite({
           <stop offset="100%" stopColor="#F97316" />
         </linearGradient>
       </defs>
-      {/* Simple figure: head */}
       <circle cx="24" cy="10" r="6" fill="url(#body-fill)" stroke="#F97316" strokeWidth="1.5" />
-      {/* Body/torso */}
       <path
         d="M24 18 L18 34 L24 30 L30 34 Z"
         fill="url(#body-fill)"
@@ -33,7 +34,6 @@ export function BodyCheckInSprite({
         strokeWidth="1.5"
         strokeLinejoin="round"
       />
-      {/* Heart / pulse - simple heart shape */}
       <path
         d="M32 16 C30 12 26 14 24 18 C22 14 18 12 16 16 C14 20 16 24 24 28 C32 24 34 20 32 16 Z"
         fill="#EA580C"

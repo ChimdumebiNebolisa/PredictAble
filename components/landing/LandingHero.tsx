@@ -2,11 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import {
-  CalendarSunSprite,
-  BodyCheckInSprite,
-  PathAdaptSprite,
-} from "./sprites";
+import { HERO_ASSETS } from "./landingImageMap";
 
 export function LandingHero() {
   const [isVisible, setIsVisible] = useState(false);
@@ -23,11 +19,11 @@ export function LandingHero() {
         className="pointer-events-none absolute inset-0 animate-gradient-pulse"
         style={{
           background: `
-            radial-gradient(ellipse 90% 70% at 50% 0%, 
-              rgba(255, 255, 255, 0.95) 0%, 
-              rgba(255, 244, 191, 0.8) 25%, 
-              rgba(250, 204, 21, 0.5) 45%, 
-              rgba(249, 115, 22, 0.3) 65%, 
+            radial-gradient(ellipse 90% 70% at 50% 0%,
+              rgba(255, 255, 255, 0.95) 0%,
+              rgba(255, 244, 191, 0.8) 25%,
+              rgba(250, 204, 21, 0.5) 45%,
+              rgba(249, 115, 22, 0.3) 65%,
               transparent 85%
             )
           `,
@@ -37,9 +33,9 @@ export function LandingHero() {
         className="pointer-events-none absolute inset-0 animate-gradient-drift"
         style={{
           background: `
-            radial-gradient(ellipse 70% 50% at 50% 5%, 
-              rgba(255, 255, 255, 0.6) 0%, 
-              rgba(255, 239, 153, 0.4) 30%, 
+            radial-gradient(ellipse 70% 50% at 50% 5%,
+              rgba(255, 255, 255, 0.6) 0%,
+              rgba(255, 239, 153, 0.4) 30%,
               transparent 60%
             )
           `,
@@ -141,9 +137,9 @@ export function LandingHero() {
           </Link>
         </div>
 
-        {/* Hero sprite cluster: 1 main + 2 satellites, below buttons; responsive on small screens */}
+        {/* Hero asset cluster: images only */}
         <div
-          className={`relative mt-8 flex min-h-[64px] min-w-[180px] items-center justify-center transition-all duration-1000 ease-out delay-[450ms] sm:mt-10 sm:min-h-[80px] sm:min-w-[200px] ${
+          className={`relative mt-8 flex min-h-[80px] min-w-[220px] items-center justify-center transition-all duration-1000 ease-out delay-[450ms] sm:mt-10 sm:min-h-[100px] sm:min-w-[260px] ${
             isVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-4"
@@ -155,25 +151,45 @@ export function LandingHero() {
               filter: "drop-shadow(0 4px 12px rgba(249, 115, 22, 0.25))",
             }}
           >
-            <div className="scale-[0.8] sm:scale-100">
-              <CalendarSunSprite size={80} className="animate-sprite-bob" />
+            <div className="scale-[0.85] sm:scale-100">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={HERO_ASSETS.main}
+                alt=""
+                className="h-24 w-24 animate-orb-float-2 object-contain sm:h-28 sm:w-28"
+                draggable={false}
+              />
             </div>
           </div>
           <div
-            className="absolute left-1/2 top-1/2 hidden cursor-default -translate-x-[calc(50%+70px)] -translate-y-1/2 transition-transform duration-200 ease-out hover:scale-110 hover:rotate-[5deg] sm:block"
+            className="absolute left-1/2 top-1/2 hidden cursor-default -translate-x-[calc(50%+85px)] -translate-y-1/2 transition-transform duration-200 ease-out hover:scale-110 hover:rotate-[5deg] sm:block"
             style={{
               filter: "drop-shadow(0 4px 12px rgba(249, 115, 22, 0.25))",
             }}
           >
-            <BodyCheckInSprite size={48} className="animate-sprite-bob-slow" style={{ animationDelay: "0.5s" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={HERO_ASSETS.left}
+              alt=""
+              className="h-16 w-16 animate-orb-float-1 object-contain"
+              style={{ animationDelay: "0.5s" }}
+              draggable={false}
+            />
           </div>
           <div
-            className="absolute left-1/2 top-1/2 hidden cursor-default -translate-x-[calc(50%-70px)] -translate-y-1/2 transition-transform duration-200 ease-out hover:scale-110 hover:rotate-[-5deg] sm:block"
+            className="absolute left-1/2 top-1/2 hidden cursor-default -translate-x-[calc(50%-85px)] -translate-y-1/2 transition-transform duration-200 ease-out hover:scale-110 hover:rotate-[-5deg] sm:block"
             style={{
               filter: "drop-shadow(0 4px 12px rgba(249, 115, 22, 0.25))",
             }}
           >
-            <PathAdaptSprite size={48} className="animate-sprite-bob-slow" style={{ animationDelay: "1s" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={HERO_ASSETS.right}
+              alt=""
+              className="h-16 w-16 animate-orb-float-3 object-contain"
+              style={{ animationDelay: "1s" }}
+              draggable={false}
+            />
           </div>
         </div>
       </div>

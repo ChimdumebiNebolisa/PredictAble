@@ -6,8 +6,10 @@ type ChipProps = {
   children: ReactNode;
   selected?: boolean;
   onToggle?: () => void;
-  /** For multi-select chip groups */
-  role?: "checkbox" | "button";
+  /** For multi-select (checkbox) or single-choice (radio) chip groups */
+  role?: "checkbox" | "button" | "radio";
+  /** When role="radio", use aria-checked for accessibility */
+  "aria-checked"?: boolean;
   className?: string;
 };
 
@@ -16,6 +18,7 @@ export function Chip({
   selected = false,
   onToggle,
   role = "button",
+  "aria-checked": ariaChecked,
   className = "",
 }: ChipProps) {
   const isInteractive = !!onToggle;
@@ -25,12 +28,15 @@ export function Chip({
     ? "border-warm-orange bg-halo-soft text-dark-text"
     : "border-line bg-center text-dark-text hover:border-warm-orange/50";
 
+  const resolvedAriaChecked =
+    ariaChecked !== undefined ? ariaChecked : (role === "checkbox" || role === "radio" ? selected : undefined);
+
   if (isInteractive) {
     return (
       <button
         type="button"
         role={role}
-        aria-checked={role === "checkbox" ? selected : undefined}
+        aria-checked={resolvedAriaChecked}
         onClick={onToggle}
         className={`${base} ${selectedClass} ${className}`}
       >

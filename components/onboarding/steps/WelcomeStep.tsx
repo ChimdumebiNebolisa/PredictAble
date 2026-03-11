@@ -28,13 +28,16 @@ export function WelcomeStep({ onNext }: WelcomeStepProps) {
           <p className="mt-3 text-muted-text">
             Plan around difficult parts of the day before they happen. We help you spot movement-heavy transitions and tough time windows so you can adjust.
           </p>
+          <p className="mt-2 text-xs text-muted-text">
+            This is a demo. We’re using sample data, not your real calendar or health.
+          </p>
           <div className="mt-6 flex flex-col gap-3">
-            <Button onClick={onNext}>Start setup</Button>
+            <Button onClick={onNext}>See how it works</Button>
             <Link
               href="/today"
               className="min-h-touch flex items-center justify-center rounded-token border border-line bg-center py-3 font-medium text-dark-text focus-visible:outline focus-visible:ring-2 focus-visible:ring-warm-orange focus-visible:ring-offset-2"
             >
-              See how it works
+              Go to Today
             </Link>
           </div>
         </ContentSlab>

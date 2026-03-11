@@ -1,18 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useRef } from "react";
 import { ScrollReveal } from "./ScrollReveal";
-import {
-  BrokenCalendarSprite,
-  SunCheckSprite,
-  RocketSprite,
-  ClipboardIcon,
-  HeartPulseIcon,
-  BranchArrowIcon,
-  LightbulbIcon,
-  SliderIcon,
-  TimelineBarsIcon,
-} from "./sprites";
+import { SectionFloatingAssets } from "./SectionFloatingAssets";
 
 function SectionAccentBar() {
   return (
@@ -46,12 +37,13 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 }
 
 function ProblemSection() {
+  const sectionRef = useRef<HTMLElement>(null);
   return (
-    <section className="py-16 sm:py-20">
-      <div className="mx-auto max-w-3xl px-6 text-center">
+    <section ref={sectionRef} className="relative py-16 sm:py-20">
+      <SectionFloatingAssets sectionId="problem" sectionRef={sectionRef} />
+      <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
         <ScrollReveal>
           <div className="flex flex-col items-center gap-3">
-            <BrokenCalendarSprite size={56} className="animate-sprite-bob-section transition-transform duration-200 hover:scale-110" />
             <SectionAccentBar />
             <SectionHeading>
               Planning your day is hard when your body doesn&apos;t follow the script.
@@ -74,19 +66,20 @@ function ProblemSection() {
 }
 
 function SolutionSection() {
+  const sectionRef = useRef<HTMLElement>(null);
   return (
-    <section className="py-16 sm:py-20">
-      <div className="mx-auto max-w-3xl px-6 text-center">
+    <section ref={sectionRef} className="relative py-16 sm:py-20">
+      <SectionFloatingAssets sectionId="solution" sectionRef={sectionRef} />
+      <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
         <ScrollReveal>
           <div className="flex flex-col items-center gap-3">
-            <SunCheckSprite size={56} className="animate-sprite-bob-section transition-transform duration-200 hover:scale-110" />
             <SectionAccentBar />
             <SectionHeading>A planner that adapts to how you feel.</SectionHeading>
           </div>
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <p className="mt-4 text-muted-text">
-            PredictAble helps you build a daily plan that respects your body&apos;s rhythms. 
+            PredictAble helps you build a daily plan that respects your body&apos;s rhythms.
             Check in with how you&apos;re feeling, and get suggestions that actually fit the day ahead.
           </p>
         </ScrollReveal>
@@ -100,9 +93,8 @@ function SolutionSection() {
   );
 }
 
-const STEP_ICONS = [ClipboardIcon, HeartPulseIcon, BranchArrowIcon] as const;
-
 function HowItWorksSection() {
+  const sectionRef = useRef<HTMLElement>(null);
   const steps = [
     {
       title: "Plan",
@@ -119,8 +111,9 @@ function HowItWorksSection() {
   ];
 
   return (
-    <section className="py-16 sm:py-20">
-      <div className="mx-auto max-w-4xl px-6">
+    <section ref={sectionRef} className="relative py-16 sm:py-20">
+      <SectionFloatingAssets sectionId="how-it-works" sectionRef={sectionRef} />
+      <div className="relative z-10 mx-auto max-w-4xl px-6">
         <ScrollReveal>
           <div className="flex flex-col items-center gap-3">
             <SectionAccentBar />
@@ -130,37 +123,30 @@ function HowItWorksSection() {
           </div>
         </ScrollReveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          {steps.map((step, index) => {
-            const Icon = STEP_ICONS[index];
-            return (
-              <ScrollReveal key={step.title} delay={index * 100}>
-                <div className="relative overflow-hidden rounded-token border border-line bg-white/60 p-6 text-center shadow-card backdrop-blur-sm">
-                  <div
-                    className="absolute left-0 right-0 top-0 h-0.5"
-                    style={{ background: "linear-gradient(to right, #F97316, #FACC15)" }}
-                  />
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-warm-orange/10">
-                    <Icon size={24} />
-                  </div>
-                  <h3 className="mt-4 text-lg font-semibold text-dark-text">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-text">
-                    {step.description}
-                  </p>
-                </div>
-              </ScrollReveal>
-            );
-          })}
+          {steps.map((step, index) => (
+            <ScrollReveal key={step.title} delay={index * 100}>
+              <div className="relative overflow-hidden rounded-token border border-line bg-white/60 p-6 text-center shadow-card backdrop-blur-sm">
+                <div
+                  className="absolute left-0 right-0 top-0 h-0.5"
+                  style={{ background: "linear-gradient(to right, #F97316, #FACC15)" }}
+                />
+                <h3 className="mt-4 text-lg font-semibold text-dark-text">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm text-muted-text">
+                  {step.description}
+                </p>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-const FEATURE_ICONS = [LightbulbIcon, SliderIcon, TimelineBarsIcon] as const;
-
 function FeaturesSection() {
+  const sectionRef = useRef<HTMLElement>(null);
   const features = [
     {
       title: "Mobility-aware suggestions",
@@ -180,8 +166,9 @@ function FeaturesSection() {
   ];
 
   return (
-    <section className="py-16 sm:py-20">
-      <div className="mx-auto max-w-4xl px-6">
+    <section ref={sectionRef} className="relative py-16 sm:py-20">
+      <SectionFloatingAssets sectionId="features" sectionRef={sectionRef} />
+      <div className="relative z-10 mx-auto max-w-4xl px-6">
         <ScrollReveal>
           <div className="flex flex-col items-center gap-3">
             <SectionAccentBar />
@@ -191,24 +178,18 @@ function FeaturesSection() {
           </div>
         </ScrollReveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          {features.map((feature, index) => {
-            const Icon = FEATURE_ICONS[index];
-            return (
-              <ScrollReveal key={feature.title} delay={index * 100}>
-                <div className="rounded-token border border-line border-l-accent-yellow bg-white/60 p-6 shadow-card backdrop-blur-sm" style={{ borderLeftWidth: "3px" }}>
-                  <div className="flex items-center gap-2">
-                    <Icon size={28} />
-                  </div>
-                  <h3 className="mt-3 text-lg font-semibold text-dark-text">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-text">
-                    {feature.description}
-                  </p>
-                </div>
-              </ScrollReveal>
-            );
-          })}
+          {features.map((feature, index) => (
+            <ScrollReveal key={feature.title} delay={index * 100}>
+              <div className="rounded-token border border-line border-l-accent-yellow bg-white/60 p-6 shadow-card backdrop-blur-sm" style={{ borderLeftWidth: "3px" }}>
+                <h3 className="mt-3 text-lg font-semibold text-dark-text">
+                  {feature.title}
+                </h3>
+                <p className="mt-2 text-sm text-muted-text">
+                  {feature.description}
+                </p>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>
@@ -216,12 +197,13 @@ function FeaturesSection() {
 }
 
 function CTASection() {
+  const sectionRef = useRef<HTMLElement>(null);
   return (
-    <section className="py-16 sm:py-24">
-      <div className="mx-auto max-w-2xl px-6 text-center">
+    <section ref={sectionRef} className="relative py-16 sm:py-24">
+      <SectionFloatingAssets sectionId="cta" sectionRef={sectionRef} />
+      <div className="relative z-10 mx-auto max-w-2xl px-6 text-center">
         <ScrollReveal>
           <div className="flex flex-col items-center gap-3">
-            <RocketSprite size={56} className="animate-sprite-bob-section transition-transform duration-200 hover:scale-110" />
             <SectionAccentBar />
             <SectionHeading>Ready to plan your day?</SectionHeading>
           </div>
@@ -246,7 +228,13 @@ function CTASection() {
 
 export function LandingSections() {
   return (
-    <div className="bg-center">
+    <div
+      className="bg-center"
+      style={{
+        background:
+          "linear-gradient(180deg, #FFFDF7 0%, #FFF7D6 35%, #FFF1CC 65%, #FFFDF7 100%)",
+      }}
+    >
       <ProblemSection />
       <SectionDivider />
       <SolutionSection />

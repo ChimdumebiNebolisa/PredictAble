@@ -1,11 +1,13 @@
 type PathAdaptSpriteProps = {
   className?: string;
   size?: number;
+  style?: React.CSSProperties;
 };
 
 export function PathAdaptSprite({
   className = "",
   size = 48,
+  style,
 }: PathAdaptSpriteProps) {
   return (
     <svg
@@ -15,38 +17,26 @@ export function PathAdaptSprite({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
       aria-hidden
     >
       <defs>
-        <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FACC15" />
+        <linearGradient id="path-fill" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFF4BF" />
           <stop offset="100%" stopColor="#F97316" />
         </linearGradient>
       </defs>
-      {/* Curved path with fork: start left, curve down-right, then fork */}
       <path
-        d="M 8 24 Q 24 8 32 24 T 44 28"
-        stroke="url(#path-gradient)"
-        strokeWidth="4"
+        d="M8 40 L24 8 L40 40"
+        stroke="url(#path-fill)"
+        strokeWidth="3"
         strokeLinecap="round"
+        strokeLinejoin="round"
         fill="none"
       />
-      {/* Fork: upper branch */}
-      <path
-        d="M 32 24 L 40 16"
-        stroke="#F97316"
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
-      {/* Fork: lower branch continues */}
-      <path
-        d="M 32 24 L 44 28"
-        stroke="#FACC15"
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
-      {/* Small circle at fork point */}
-      <circle cx="32" cy="24" r="3" fill="#FFFDF7" stroke="#EA580C" strokeWidth="1.5" />
+      <circle cx="24" cy="8" r="4" fill="#FACC15" stroke="#F97316" strokeWidth="1.5" />
+      <circle cx="8" cy="40" r="4" fill="url(#path-fill)" stroke="#F97316" strokeWidth="1.5" />
+      <circle cx="40" cy="40" r="4" fill="url(#path-fill)" stroke="#F97316" strokeWidth="1.5" />
     </svg>
   );
 }

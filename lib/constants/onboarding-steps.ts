@@ -1,17 +1,21 @@
 /**
- * Onboarding step order. Matches SPEC Information Architecture.
+ * Demo workflow onboarding: Sync first → Questions → Summary → Forecast.
  */
 
-export const ONBOARDING_STEP_COUNT = 8;
+export const ONBOARDING_STEP_COUNT = 12;
 
 export const ONBOARDING_STEPS = [
   "welcome",
-  "challenge_profile",
-  "setup_method",
-  "manual_setup",
-  "optional_sync",
+  "sync_calendar",
+  "sync_activity",
+  "sync_patterns",
+  "sync_places",
+  "sync_rough_schedule",
+  "refine",
+  "fill_gaps",
   "support_preferences",
-  "first_daily_input",
+  "how_are_you_today",
+  "summary",
   "first_forecast",
 ] as const;
 

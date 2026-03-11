@@ -4,15 +4,18 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ProgressHeader } from "./ProgressHeader";
 import { WelcomeStep } from "./steps/WelcomeStep";
-import { ChallengeProfileStep } from "./steps/ChallengeProfileStep";
-import { SetupMethodStep } from "./steps/SetupMethodStep";
-import { ManualSetupStep } from "./steps/ManualSetupStep";
-import { OptionalSyncStep } from "./steps/OptionalSyncStep";
+import { SyncCalendarStep } from "./steps/SyncCalendarStep";
+import { SyncActivityStep } from "./steps/SyncActivityStep";
+import { SyncPatternsStep } from "./steps/SyncPatternsStep";
+import { SyncPlacesStep } from "./steps/SyncPlacesStep";
+import { SyncRoughScheduleStep } from "./steps/SyncRoughScheduleStep";
+import { RefineStep } from "./steps/RefineStep";
+import { FillGapsStep } from "./steps/FillGapsStep";
 import { SupportPreferencesStep } from "./steps/SupportPreferencesStep";
 import { FirstDailyInputStep } from "./steps/FirstDailyInputStep";
+import { SummaryStep } from "./steps/SummaryStep";
 import { FirstForecastStep } from "./steps/FirstForecastStep";
 import { ONBOARDING_STEP_COUNT } from "@/lib/constants/onboarding-steps";
-import type { OnboardingStepId } from "@/lib/constants/onboarding-steps";
 import type { UserProfile } from "@/lib/constants/types";
 
 export type OnboardingState = {
@@ -23,6 +26,17 @@ export type OnboardingState = {
   movementDifficulty: "low" | "medium" | "high";
   dailyNotes?: string;
   profile: Partial<UserProfile>;
+  // Demo confirm (5 buckets)
+  confirmCalendar?: boolean;
+  confirmActivity?: boolean;
+  confirmPatterns?: boolean;
+  confirmPlaces?: boolean;
+  confirmRoughSchedule?: boolean;
+  // Demo refine (flagged windows)
+  refineTimeWindows?: boolean;
+  refineHeavierDays?: boolean;
+  // Fill gaps: "anything else"
+  otherFactors: string[];
 };
 
 const defaultState: OnboardingState = {
@@ -32,6 +46,7 @@ const defaultState: OnboardingState = {
   currentStrain: 1,
   movementDifficulty: "low",
   profile: {},
+  otherFactors: [],
 };
 
 export function OnboardingFlow() {
@@ -41,6 +56,15 @@ export function OnboardingFlow() {
 
   const currentStep = step + 1;
   const showProgress = step > 0;
+
+  const phaseLabel =
+    currentStep >= 2 && currentStep <= 6
+      ? "Syncing your data"
+      : currentStep >= 7 && currentStep <= 10
+        ? "A few quick questions"
+        : currentStep >= 11
+          ? "Almost there"
+          : undefined;
 
   const goNext = () => {
     if (step < ONBOARDING_STEP_COUNT - 1) {
@@ -64,15 +88,14 @@ export function OnboardingFlow() {
         <ProgressHeader
           currentStep={currentStep}
           totalSteps={ONBOARDING_STEP_COUNT}
-          label="Setup progress"
+          label="Demo progress"
+          phaseLabel={phaseLabel}
         />
       )}
       <div className="flex-1">
-        {step === 0 && (
-          <WelcomeStep onNext={goNext} />
-        )}
+        {step === 0 && <WelcomeStep onNext={goNext} />}
         {step === 1 && (
-          <ChallengeProfileStep
+          <SyncCalendarStep
             state={state}
             updateState={updateState}
             onNext={goNext}
@@ -80,10 +103,15 @@ export function OnboardingFlow() {
           />
         )}
         {step === 2 && (
-          <SetupMethodStep onNext={goNext} onBack={goBack} />
+          <SyncActivityStep
+            state={state}
+            updateState={updateState}
+            onNext={goNext}
+            onBack={goBack}
+          />
         )}
         {step === 3 && (
-          <ManualSetupStep
+          <SyncPatternsStep
             state={state}
             updateState={updateState}
             onNext={goNext}
@@ -91,10 +119,15 @@ export function OnboardingFlow() {
           />
         )}
         {step === 4 && (
-          <OptionalSyncStep onNext={goNext} onBack={goBack} />
+          <SyncPlacesStep
+            state={state}
+            updateState={updateState}
+            onNext={goNext}
+            onBack={goBack}
+          />
         )}
         {step === 5 && (
-          <SupportPreferencesStep
+          <SyncRoughScheduleStep
             state={state}
             updateState={updateState}
             onNext={goNext}
@@ -102,7 +135,7 @@ export function OnboardingFlow() {
           />
         )}
         {step === 6 && (
-          <FirstDailyInputStep
+          <RefineStep
             state={state}
             updateState={updateState}
             onNext={goNext}
@@ -110,7 +143,34 @@ export function OnboardingFlow() {
           />
         )}
         {step === 7 && (
-          <FirstForecastStep onNext={goNext} onBack={goBack} />
+          <FillGapsStep
+            state={state}
+            updateState={updateState}
+            onNext={goNext}
+            onBack={goBack}
+          />
+        )}
+        {step === 8 && (
+          <SupportPreferencesStep
+            state={state}
+            updateState={updateState}
+            onNext={goNext}
+            onBack={goBack}
+          />
+        )}
+        {step === 9 && (
+          <FirstDailyInputStep
+            state={state}
+            updateState={updateState}
+            onNext={goNext}
+            onBack={goBack}
+          />
+        )}
+        {step === 10 && (
+          <SummaryStep state={state} onNext={goNext} onBack={goBack} />
+        )}
+        {step === 11 && (
+          <FirstForecastStep state={state} onNext={goNext} onBack={goBack} />
         )}
       </div>
     </div>

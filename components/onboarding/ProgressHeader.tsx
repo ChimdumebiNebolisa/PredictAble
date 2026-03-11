@@ -3,12 +3,15 @@ type ProgressHeaderProps = {
   totalSteps: number;
   /** Optional short label for screen readers */
   label?: string;
+  /** Optional phase label shown next to step count (e.g. "Syncing your data") */
+  phaseLabel?: string;
 };
 
 export function ProgressHeader({
   currentStep,
   totalSteps,
   label = "Progress",
+  phaseLabel,
 }: ProgressHeaderProps) {
   const percent = totalSteps > 0 ? (currentStep / totalSteps) * 100 : 0;
 
@@ -27,8 +30,15 @@ export function ProgressHeader({
           style={{ width: `${percent}%` }}
         />
       </div>
+      <p className="mt-2 text-center text-sm text-muted-text" aria-hidden="true">
+        Step {currentStep} of {totalSteps}
+        {phaseLabel ? (
+          <span className="ml-2 text-muted-text">· {phaseLabel}</span>
+        ) : null}
+      </p>
       <p className="sr-only">
         Step {currentStep} of {totalSteps}
+        {phaseLabel ? `. ${phaseLabel}` : ""}
       </p>
     </div>
   );

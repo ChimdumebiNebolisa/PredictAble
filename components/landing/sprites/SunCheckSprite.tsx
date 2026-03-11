@@ -18,39 +18,22 @@ export function SunCheckSprite({
       aria-hidden
     >
       <defs>
-        <radialGradient id="sun-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#FFFDF7" />
-          <stop offset="50%" stopColor="#FACC15" stopOpacity={0.9} />
-          <stop offset="100%" stopColor="#F97316" stopOpacity={0.5} />
-        </radialGradient>
+        <linearGradient id="sun-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFF4BF" />
+          <stop offset="100%" stopColor="#FACC15" />
+        </linearGradient>
       </defs>
-      {/* Sun rays */}
-      {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => {
-        const rad = (deg * Math.PI) / 180;
-        const x1 = 28 + 12 * Math.cos(rad);
-        const y1 = 28 + 12 * Math.sin(rad);
-        const x2 = 28 + 22 * Math.cos(rad);
-        const y2 = 28 + 22 * Math.sin(rad);
-        return (
-          <line
-            key={deg}
-            x1={x1}
-            y1={y1}
-            x2={x2}
-            y2={y2}
-            stroke="#FACC15"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        );
-      })}
       <circle cx="28" cy="28" r="14" fill="url(#sun-glow)" stroke="#F97316" strokeWidth="2" />
-      <circle cx="28" cy="28" r="8" fill="#FFFDF7" />
-      {/* Checkmark */}
       <path
-        d="M 22 28 L 26 32 L 34 24"
+        d="M28 10 L28 6 M28 50 L28 46 M16 28 L12 28 M44 28 L48 28 M20 18 L17 15 M36 38 L39 41 M20 38 L17 41 M36 18 L39 15"
+        stroke="#F97316"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M22 28 L26 32 L34 24"
         stroke="#EA580C"
-        strokeWidth="3"
+        strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"

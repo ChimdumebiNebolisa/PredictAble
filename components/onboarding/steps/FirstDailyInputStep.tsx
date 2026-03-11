@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/shared/Button";
 import { ContentSlab } from "@/components/shared/ContentSlab";
-import { SliderField } from "@/components/shared/SliderField";
 import { Chip } from "@/components/shared/Chip";
 import type { OnboardingState } from "../OnboardingFlow";
 
@@ -13,7 +12,11 @@ type FirstDailyInputStepProps = {
   onBack: () => void;
 };
 
-const STRAIN_LABELS = ["Low", "Moderate", "High"];
+const STRAIN_OPTIONS: { value: number; label: string }[] = [
+  { value: 0, label: "Low" },
+  { value: 1, label: "Moderate" },
+  { value: 2, label: "High" },
+];
 
 export function FirstDailyInputStep({
   state,
@@ -31,15 +34,19 @@ export function FirstDailyInputStep({
         <p className="mt-2 text-sm text-muted-text">
           This helps us adjust today’s forecast. You can update it anytime with Quick check-in.
         </p>
-        <div className="mt-4">
-          <SliderField
-            label="Current strain"
-            min={0}
-            max={2}
-            value={strainValue}
-            onChange={(v) => updateState({ currentStrain: v })}
-            valueLabels={STRAIN_LABELS}
-          />
+        <p className="mt-4 text-sm text-muted-text">Current strain</p>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {STRAIN_OPTIONS.map(({ value, label }) => (
+            <Chip
+              key={value}
+              selected={strainValue === value}
+              onToggle={() => updateState({ currentStrain: value })}
+              role="radio"
+              aria-checked={strainValue === value}
+            >
+              {label}
+            </Chip>
+          ))}
         </div>
         <p className="mt-4 text-sm text-muted-text">Movement difficulty today</p>
         <div className="mt-2 flex flex-wrap gap-2">
