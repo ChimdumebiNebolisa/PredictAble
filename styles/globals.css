@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-center: #fffdf7;
+  --color-halo-soft: #fff4bf;
+  --color-halo-secondary: #ffef99;
+  --color-accent-yellow: #facc15;
+  --color-warm-orange: #f97316;
+  --color-deep-orange: #ea580c;
+  --color-dark-text: #1f2937;
+  --color-muted-text: #4b5563;
+  --color-line: #e5e7eb;
+  --radius: 0.75rem;
+  --touch-min: 44px;
+  --spacing-page: 1.5rem;
+  --shadow-slab: 0 1px 3px rgba(31, 41, 55, 0.06);
+  --shadow-card: 0 2px 8px rgba(31, 41, 55, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-warm-orange);
+  outline-offset: 2px;
+}
+
+body {
+  background-color: var(--color-center);
+}
