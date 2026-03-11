@@ -2,6 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import {
+  CalendarSunSprite,
+  BodyCheckInSprite,
+  PathAdaptSprite,
+} from "./sprites";
 
 export function LandingHero() {
   const [isVisible, setIsVisible] = useState(false);
@@ -134,6 +139,42 @@ export function LandingHero() {
               style={{ background: "rgba(255, 255, 255, 0.4)" }}
             />
           </Link>
+        </div>
+
+        {/* Hero sprite cluster: 1 main + 2 satellites, below buttons; responsive on small screens */}
+        <div
+          className={`relative mt-8 flex min-h-[64px] min-w-[180px] items-center justify-center transition-all duration-1000 ease-out delay-[450ms] sm:mt-10 sm:min-h-[80px] sm:min-w-[200px] ${
+            isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-4"
+          }`}
+        >
+          <div
+            className="cursor-default transition-transform duration-200 ease-out hover:scale-110 hover:rotate-[5deg]"
+            style={{
+              filter: "drop-shadow(0 4px 12px rgba(249, 115, 22, 0.25))",
+            }}
+          >
+            <div className="scale-[0.8] sm:scale-100">
+              <CalendarSunSprite size={80} className="animate-sprite-bob" />
+            </div>
+          </div>
+          <div
+            className="absolute left-1/2 top-1/2 hidden cursor-default -translate-x-[calc(50%+70px)] -translate-y-1/2 transition-transform duration-200 ease-out hover:scale-110 hover:rotate-[5deg] sm:block"
+            style={{
+              filter: "drop-shadow(0 4px 12px rgba(249, 115, 22, 0.25))",
+            }}
+          >
+            <BodyCheckInSprite size={48} className="animate-sprite-bob-slow" style={{ animationDelay: "0.5s" }} />
+          </div>
+          <div
+            className="absolute left-1/2 top-1/2 hidden cursor-default -translate-x-[calc(50%-70px)] -translate-y-1/2 transition-transform duration-200 ease-out hover:scale-110 hover:rotate-[-5deg] sm:block"
+            style={{
+              filter: "drop-shadow(0 4px 12px rgba(249, 115, 22, 0.25))",
+            }}
+          >
+            <PathAdaptSprite size={48} className="animate-sprite-bob-slow" style={{ animationDelay: "1s" }} />
+          </div>
         </div>
       </div>
     </section>

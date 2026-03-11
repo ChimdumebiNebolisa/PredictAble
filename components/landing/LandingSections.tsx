@@ -2,6 +2,40 @@
 
 import Link from "next/link";
 import { ScrollReveal } from "./ScrollReveal";
+import {
+  BrokenCalendarSprite,
+  SunCheckSprite,
+  RocketSprite,
+  ClipboardIcon,
+  HeartPulseIcon,
+  BranchArrowIcon,
+  LightbulbIcon,
+  SliderIcon,
+  TimelineBarsIcon,
+} from "./sprites";
+
+function SectionAccentBar() {
+  return (
+    <div
+      className="mx-auto h-0.5 w-10 rounded-full"
+      style={{ background: "linear-gradient(90deg, #F97316, #FACC15)" }}
+      aria-hidden
+    />
+  );
+}
+
+function SectionDivider() {
+  return (
+    <div className="flex justify-center py-4" aria-hidden>
+      <div
+        className="h-px w-full max-w-[200px]"
+        style={{
+          background: "linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.2), transparent)",
+        }}
+      />
+    </div>
+  );
+}
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -16,13 +50,17 @@ function ProblemSection() {
     <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-3xl px-6 text-center">
         <ScrollReveal>
-          <SectionHeading>
-            Planning your day is hard when your body doesn&apos;t follow the script.
-          </SectionHeading>
+          <div className="flex flex-col items-center gap-3">
+            <BrokenCalendarSprite size={56} className="animate-sprite-bob-section transition-transform duration-200 hover:scale-110" />
+            <SectionAccentBar />
+            <SectionHeading>
+              Planning your day is hard when your body doesn&apos;t follow the script.
+            </SectionHeading>
+          </div>
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <p className="mt-4 text-muted-text">
-            Energy, pain, and mobility change by the hour—but most planners assume every day is the same.
+            Energy, pain, and mobility change by the hour, but most planners assume every day is the same.
           </p>
         </ScrollReveal>
         <ScrollReveal delay={200}>
@@ -40,7 +78,11 @@ function SolutionSection() {
     <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-3xl px-6 text-center">
         <ScrollReveal>
-          <SectionHeading>A planner that adapts to how you feel.</SectionHeading>
+          <div className="flex flex-col items-center gap-3">
+            <SunCheckSprite size={56} className="animate-sprite-bob-section transition-transform duration-200 hover:scale-110" />
+            <SectionAccentBar />
+            <SectionHeading>A planner that adapts to how you feel.</SectionHeading>
+          </div>
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <p className="mt-4 text-muted-text">
@@ -58,22 +100,21 @@ function SolutionSection() {
   );
 }
 
+const STEP_ICONS = [ClipboardIcon, HeartPulseIcon, BranchArrowIcon] as const;
+
 function HowItWorksSection() {
   const steps = [
     {
-      number: "1",
       title: "Plan",
-      description: "Set your intentions for the day—tasks, goals, and priorities.",
+      description: "Set your intentions for the day: tasks, goals, and priorities.",
     },
     {
-      number: "2",
       title: "Sync",
       description: "Check in with your body. How's your energy? Any pain or stiffness?",
     },
     {
-      number: "3",
       title: "Adapt",
-      description: "Get suggestions that fit the day. Reschedule, simplify, or push through—your call.",
+      description: "Get suggestions that fit the day. Reschedule, simplify, or push through, your call.",
     },
   ];
 
@@ -81,51 +122,60 @@ function HowItWorksSection() {
     <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-4xl px-6">
         <ScrollReveal>
-          <SectionHeading>
-            <span className="block text-center">How it works</span>
-          </SectionHeading>
+          <div className="flex flex-col items-center gap-3">
+            <SectionAccentBar />
+            <SectionHeading>
+              <span className="block text-center">How it works</span>
+            </SectionHeading>
+          </div>
         </ScrollReveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          {steps.map((step, index) => (
-            <ScrollReveal key={step.number} delay={index * 100}>
-              <div className="rounded-token border border-line bg-white/60 p-6 text-center shadow-card backdrop-blur-sm">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-warm-orange/10 text-xl font-bold text-warm-orange">
-                  {step.number}
+          {steps.map((step, index) => {
+            const Icon = STEP_ICONS[index];
+            return (
+              <ScrollReveal key={step.title} delay={index * 100}>
+                <div className="relative overflow-hidden rounded-token border border-line bg-white/60 p-6 text-center shadow-card backdrop-blur-sm">
+                  <div
+                    className="absolute left-0 right-0 top-0 h-0.5"
+                    style={{ background: "linear-gradient(to right, #F97316, #FACC15)" }}
+                  />
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-warm-orange/10">
+                    <Icon size={24} />
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-dark-text">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-text">
+                    {step.description}
+                  </p>
                 </div>
-                <h3 className="mt-4 text-lg font-semibold text-dark-text">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-sm text-muted-text">
-                  {step.description}
-                </p>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
+const FEATURE_ICONS = [LightbulbIcon, SliderIcon, TimelineBarsIcon] as const;
+
 function FeaturesSection() {
   const features = [
     {
-      icon: "📊",
       title: "Mobility-aware suggestions",
       description:
         "Recommendations based on how you're feeling today, not how you felt yesterday.",
     },
     {
-      icon: "✓",
       title: "Daily check-in",
       description:
         "A quick way to log energy, pain, and mood so your plan stays in sync.",
     },
     {
-      icon: "📅",
       title: "Adaptive timeline",
       description:
-        "Your schedule adjusts as the day unfolds—no more rigid, all-or-nothing plans.",
+        "Your schedule adjusts as the day unfolds. No more rigid, all-or-nothing plans.",
     },
   ];
 
@@ -133,24 +183,32 @@ function FeaturesSection() {
     <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-4xl px-6">
         <ScrollReveal>
-          <SectionHeading>
-            <span className="block text-center">Features</span>
-          </SectionHeading>
+          <div className="flex flex-col items-center gap-3">
+            <SectionAccentBar />
+            <SectionHeading>
+              <span className="block text-center">Features</span>
+            </SectionHeading>
+          </div>
         </ScrollReveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          {features.map((feature, index) => (
-            <ScrollReveal key={feature.title} delay={index * 100}>
-              <div className="rounded-token border border-line bg-white/60 p-6 shadow-card backdrop-blur-sm">
-                <div className="text-3xl">{feature.icon}</div>
-                <h3 className="mt-3 text-lg font-semibold text-dark-text">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-sm text-muted-text">
-                  {feature.description}
-                </p>
-              </div>
-            </ScrollReveal>
-          ))}
+          {features.map((feature, index) => {
+            const Icon = FEATURE_ICONS[index];
+            return (
+              <ScrollReveal key={feature.title} delay={index * 100}>
+                <div className="rounded-token border border-line border-l-accent-yellow bg-white/60 p-6 shadow-card backdrop-blur-sm" style={{ borderLeftWidth: "3px" }}>
+                  <div className="flex items-center gap-2">
+                    <Icon size={28} />
+                  </div>
+                  <h3 className="mt-3 text-lg font-semibold text-dark-text">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-text">
+                    {feature.description}
+                  </p>
+                </div>
+              </ScrollReveal>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -162,7 +220,11 @@ function CTASection() {
     <section className="py-16 sm:py-24">
       <div className="mx-auto max-w-2xl px-6 text-center">
         <ScrollReveal>
-          <SectionHeading>Ready to plan your day?</SectionHeading>
+          <div className="flex flex-col items-center gap-3">
+            <RocketSprite size={56} className="animate-sprite-bob-section transition-transform duration-200 hover:scale-110" />
+            <SectionAccentBar />
+            <SectionHeading>Ready to plan your day?</SectionHeading>
+          </div>
         </ScrollReveal>
         <ScrollReveal delay={100}>
           <p className="mt-4 text-muted-text">
@@ -186,9 +248,13 @@ export function LandingSections() {
   return (
     <div className="bg-center">
       <ProblemSection />
+      <SectionDivider />
       <SolutionSection />
+      <SectionDivider />
       <HowItWorksSection />
+      <SectionDivider />
       <FeaturesSection />
+      <SectionDivider />
       <CTASection />
     </div>
   );
